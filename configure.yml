@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+  - name: Install git
+    package: name=git state=latest
+
+  - name: Install vim
+    package: name=vim state=latest
+
+  - name: Copy vimrc
+    copy: src=vimrc dest=~/.vimrc
+
+  - name: Copy gitconfig
+    copy: src=gitconfig dest=~/.gitconfig
+
+  - name: Copy vim syntax plugins
+    copy: src=backup/syntax dest=~/.vim/
+
+  - name: Copy vim indent plugins
+    copy: src=backup/indent dest=~/.vim/
