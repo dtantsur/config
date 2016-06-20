@@ -1,0 +1,12 @@
+[user]
+	name = Dmitry Tantsur
+	email = divius.inside@gmail.com
+[alias]
+        ci = commit
+        co = checkout
+        ff = pull --ff-only
+        st = status
+        top = log -1
+	ll = log --graph --all --decorate
+[push]
+	default = upstream
