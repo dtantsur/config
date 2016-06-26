@@ -10,6 +10,7 @@ if isdirectory($HOME . "/.vim/bundle")
     call vundle#begin()
 
     Plugin 'gmarik/Vundle.vim'
+    Plugin 'hynek/vim-python-pep8-indent'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'LycosaExplorer'
     Plugin 'nvie/vim-flake8'
