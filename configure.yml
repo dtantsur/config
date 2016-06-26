@@ -13,8 +13,5 @@
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
 
-  - name: Copy vim syntax plugins
-    copy: src=backup/syntax dest=~/.vim/
-
-  - name: Copy vim indent plugins
+  - name: Copy a working vim python indent plugin
     copy: src=backup/indent dest=~/.vim/
