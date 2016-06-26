@@ -12,6 +12,8 @@
     - gcc-c++
     - tmux
     - python-virtualenv
+    - libffi-devel
+    - openssl-devel
 
   - name: Copy vimrc
     copy: src=vimrc dest=~/.vimrc
