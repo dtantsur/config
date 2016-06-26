@@ -2,9 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 let mapleader = "\\"
 
-" 1. http://www.vim.org/scripts/script.php?script_id=790
-" 2. git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" 3. http://www.vim.org/scripts/script.php?script_id=974
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 if isdirectory($HOME . "/.vim/bundle")
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()

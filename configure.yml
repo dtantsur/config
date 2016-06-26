@@ -1,14 +1,30 @@
 ---
 - hosts: all
   tasks:
-  - name: Install git
-    package: name=git state=latest
-
-  - name: Install vim
-    package: name=vim state=latest
+  - name: Install various packages
+    package: name={{item}} state=latest
+    with_items:
+    - python-devel
+    - python-flake8
+    - git
+    - vim
+    - cmake
+    - gcc-c++
+    - tmux
+    - python-virtualenv
 
   - name: Copy vimrc
     copy: src=vimrc dest=~/.vimrc
 
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
+
+  - name: Install Vundle
+    git: repo=https://github.com/VundleVim/Vundle.vim
+         dest=~/.vim/bundle/Vundle.vim
+
+  - name: Install vim plugins
+    command: vim +PluginInstall +qall
+
+  - name: Build YouCompleteMe plugin
+    command: ./install.py chdir=~/.vim/bundle/YouCompleteMe
