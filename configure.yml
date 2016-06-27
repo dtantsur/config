@@ -1,6 +1,10 @@
 ---
 - hosts: all
   tasks:
+  - name: Make sure ansible can work
+    command: sudo dnf install -y python-dnf
+    when: ansible_distribution == 'Fedora'
+
   - name: Install various packages
     package: name={{item}} state=latest
     with_items:
@@ -14,6 +18,7 @@
     - python-virtualenv
     - libffi-devel
     - openssl-devel
+    - libselinux-python
 
   - name: Copy vimrc
     copy: src=vimrc dest=~/.vimrc
