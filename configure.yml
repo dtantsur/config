@@ -2,7 +2,8 @@
 - hosts: all
   tasks:
   - name: Make sure ansible can work
-    command: sudo dnf install -y python-dnf
+    command: dnf install -y python-dnf
+    become: true
     when: ansible_distribution == 'Fedora'
 
   - name: Install various packages
