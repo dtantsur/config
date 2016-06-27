@@ -20,6 +20,7 @@
     - libffi-devel
     - openssl-devel
     - libselinux-python
+    become: true
 
   - name: Copy vimrc
     copy: src=vimrc dest=~/.vimrc

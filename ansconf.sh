@@ -1,2 +1,2 @@
 #!/bin/sh
-ansible-playbook configure.yml -i $1, -b
+ansible-playbook configure.yml -i $1,
