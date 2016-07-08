@@ -20,6 +20,7 @@
     - libffi-devel
     - openssl-devel
     - libselinux-python
+    - tmux
     become: true
 
   - name: Install various Fedora packages
