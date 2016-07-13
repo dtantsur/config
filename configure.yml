@@ -27,6 +27,7 @@
     package: name={{item}} state=latest
     with_items:
     - the_silver_searcher
+    - fish
     become: true
     when: ansible_distribution == 'Fedora'
 
@@ -39,6 +40,12 @@
   - name: Install Vundle
     git: repo=https://github.com/VundleVim/Vundle.vim
          dest=~/.vim/bundle/Vundle.vim
+
+  - name: Create ~/.config/fish
+    file: path=~/.config/fish state=directory
+
+  - name: Copy config.fish
+    copy: src=config.fish dest=~/.config/fish/config.fish
 
   - name: Install vim plugins
     command: vim +PluginInstall +qall
