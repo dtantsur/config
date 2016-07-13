@@ -6,17 +6,21 @@ function fish_right_prompt
             echo -n (set_color yellow)
         end
 
-        git rev-parse --abbrev-ref HEAD
+        if git show HEAD > /dev/null 2>&1
+            git rev-parse --abbrev-ref HEAD
+        else
+            echo "---"
+        end
     end
 end
 
 function fish_prompt
     set last_st $status
-    echo -n (set_color green)
 
     set root_dir ~
     set curr_dir (pwd)
     set prog "import os.path; print os.path.relpath('$curr_dir', '$root_dir') if '$root_dir' in '$curr_dir' else '$curr_dir'"
+    echo -n (set_color green)
     echo -n '['
     echo -n (python -c "$prog")
     echo -n ']'
