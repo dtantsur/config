@@ -41,6 +41,9 @@ set ls=2
 set scrolloff=5
 set incsearch
 set wildmenu
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
 
 nnoremap <silent> <Leader>/ :noh<CR>
 imap <S-Space> <Esc>
