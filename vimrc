@@ -15,6 +15,9 @@ if isdirectory($HOME . "/.vim/bundle")
     " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'wting/rust.vim'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-commentary'
 
     call vundle#end()
 
