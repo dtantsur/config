@@ -52,3 +52,18 @@
 
   - name: Build YouCompleteMe plugin
     command: ./install.py chdir=~/.vim/bundle/YouCompleteMe
+
+  - name: Create ~/Projects
+    file: path=~/Projects state=directory
+
+  - name: Clone a few things I tend to work on
+    git: repo=https://git.openstack.org/openstack/{{item}}
+         dest=~/Projects/{{item}}
+         update=no
+    with_items:
+    - ironic
+    - ironic-inspector
+    - python-ironicclient
+    - python-ironic-inspector-client
+    - ironic-python-agent
+    - tripleo-heat-templates
