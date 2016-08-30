@@ -67,3 +67,9 @@
     - python-ironic-inspector-client
     - ironic-python-agent
     - tripleo-heat-templates
+    - tripleo-common
+
+  - name: Clone tripleo-ci
+    git: repo=https://git.openstack.org/openstack-infra/tripleo-ci
+         dest=~/Projects/tripleo-ci
+         update=no
