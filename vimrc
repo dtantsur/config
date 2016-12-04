@@ -33,7 +33,7 @@ set softtabstop=4
 set shiftwidth=4
 filetype indent on
 set textwidth=79
-colorscheme desert
+colorscheme peachpuff
 set hidden
 set number
 set colorcolumn=80
