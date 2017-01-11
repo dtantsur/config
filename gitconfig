@@ -4,9 +4,13 @@
 [alias]
         ci = commit
         co = checkout
+        dc = diff --cached
         ff = pull --ff-only
-        st = status
-        top = log -1
-	ll = log --graph --all --decorate
+        st = status --short --branch
+        top = log -1 --stat
+        topp = log -1 --stat -p
+        l = log --decorate
+        ll = log --graph --all --decorate --oneline
+        la = log --graph --all --decorate --stat
 [push]
 	default = upstream
