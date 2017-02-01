@@ -10,7 +10,6 @@
     package: name={{item}} state=latest
     with_items:
     - python-devel
-    - python-flake8
     - git
     - vim
     - cmake
@@ -22,6 +21,10 @@
     - libselinux-python
     - tmux
     become: true
+
+  - name: Install optional flake8
+    package: name=python-flake8 state=latest
+    ignore_errors: yes
 
   - name: Install various Fedora packages
     package: name={{item}} state=latest
