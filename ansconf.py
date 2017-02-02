@@ -9,6 +9,7 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument("inventory")
 parser.add_argument("--ssh-config")
+parser.add_argument("-v", "--verbose", action='store_true')
 args = parser.parse_args()
 
 
@@ -19,6 +20,8 @@ if not os.path.exists(inventory):
 call = ['ansible-playbook', 'configure.yml', '-i', inventory]
 if args.ssh_config:
     call.extend(["--ssh-common-args", "-F %s" % args.ssh_config])
+if args.verbose:
+    call.append('-vvvv')
 
 try:
     subprocess.check_call(call)
