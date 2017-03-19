@@ -24,6 +24,7 @@
 
   - name: Install optional flake8
     package: name=python-flake8 state=latest
+    become: true
     ignore_errors: yes
 
   - name: Install various Fedora packages
