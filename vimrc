@@ -14,10 +14,10 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'nvie/vim-flake8'
     " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'wting/rust.vim'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-commentary'
+    Plugin 'rust-lang/rust.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
+    " Plugin 'tpope/vim-surround'
+    " Plugin 'tpope/vim-commentary'
 
     call vundle#end()
 
