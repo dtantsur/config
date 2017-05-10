@@ -39,6 +39,14 @@
   - name: Install repositories for the given release
     shell: STABLE_RELEASE={{ openstack_release }} ~/Projects/tripleo-ci/scripts/tripleo.sh --repo-setup
 
+  - name: Install OpenStack clients
+    package: name={{item}} state=latest
+    with_items:
+    - python-openstackclient
+    - python-ironicclient
+    - python-tripleoclient
+    become: true
+
 - hosts: all
   tasks:
   - name: Install optional OpenStack packages
