@@ -94,3 +94,4 @@
     - ironic-python-agent
     - tripleo-heat-templates
     - tripleo-common
+    - python-tripleoclient
