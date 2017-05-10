@@ -20,10 +20,14 @@
     - openssl-devel
     - libselinux-python
     - tmux
+    - python-sphinx
     become: true
 
-  - name: Install optional flake8
-    package: name=python-flake8 state=latest
+  - name: Install optional OpenStack packages
+    package: name={{item}} state=latest
+    with_items:
+    - python-flake8
+    - python-openstackdocstheme
     become: true
     ignore_errors: yes
 

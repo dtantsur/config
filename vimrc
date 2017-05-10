@@ -8,10 +8,10 @@ if isdirectory($HOME . "/.vim/bundle")
     call vundle#begin()
 
     Plugin 'gmarik/Vundle.vim'
+    Plugin 'vim-syntastic/syntastic'
     Plugin 'hynek/vim-python-pep8-indent'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'LycosaExplorer'
-    Plugin 'nvie/vim-flake8'
     " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'rust-lang/rust.vim'
@@ -22,7 +22,6 @@ if isdirectory($HOME . "/.vim/bundle")
     call vundle#end()
 
     let g:ycm_autoclose_preview_window_after_completion = 1
-    autocmd BufWriteCmd *.py call Flake8()
 endif
 
 syntax on
@@ -53,3 +52,17 @@ map <Leader>f <Leader>lr
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = "--ignore=W503,E129"
+let g:syntastic_rst_checkers = ['sphinx']
+let g:syntastic_rust_checkers = ['rustc']
+let g:syntastic_rust_rustc_exe = 'cargo check'
+let g:syntastic_rust_rustc_fname = ''
+let g:syntastic_rust_rustc_args = '--'
+highlight SyntasticErrorSign guifg=white guibg=red
