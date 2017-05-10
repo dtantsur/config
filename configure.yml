@@ -23,6 +23,24 @@
     - python-sphinx
     become: true
 
+  - name: Clone tripleo-ci
+    git: repo=https://git.openstack.org/openstack-infra/tripleo-ci
+         dest=~/Projects/tripleo-ci
+         update=no
+
+- hosts: all
+  tags:
+  - repos
+  tasks:
+  - name: Clean up existing delorean repositories
+    command: rm -f /etc/yum.repos.d/delorean*.repo
+    become: true
+
+  - name: Install repositories for the given release
+    shell: STABLE_RELEASE={{ openstack_release }} ~/Projects/tripleo-ci/scripts/tripleo.sh --repo-setup
+
+- hosts: all
+  tasks:
   - name: Install optional OpenStack packages
     package: name={{item}} state=latest
     with_items:
@@ -76,8 +94,3 @@
     - ironic-python-agent
     - tripleo-heat-templates
     - tripleo-common
-
-  - name: Clone tripleo-ci
-    git: repo=https://git.openstack.org/openstack-infra/tripleo-ci
-         dest=~/Projects/tripleo-ci
-         update=no
