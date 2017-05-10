@@ -16,8 +16,9 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'rust-lang/rust.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
-    " Plugin 'tpope/vim-surround'
-    " Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-unimpaired'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-commentary'
 
     call vundle#end()
 
