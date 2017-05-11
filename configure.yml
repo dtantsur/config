@@ -39,6 +39,10 @@
   - name: Install repositories for the given release
     shell: STABLE_RELEASE={{ openstack_release }} ~/Projects/tripleo-ci/scripts/tripleo.sh --repo-setup
 
+  - name: Update all packages
+    command: yum update -y
+    become: true
+
   - name: Install OpenStack clients
     package: name={{item}} state=latest
     with_items:
