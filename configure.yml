@@ -88,8 +88,12 @@
   - name: Install vim plugins
     command: vim +PluginInstall +qall
 
+  - stat: path=~/.vim/bundle/YouCompleteMe
+    register: ycm
+
   - name: Build YouCompleteMe plugin
     command: ./install.py chdir=~/.vim/bundle/YouCompleteMe
+    when: ycm.stat.exists == True
 
   - name: Create ~/Projects
     file: path=~/Projects state=directory
@@ -107,3 +111,17 @@
     - tripleo-heat-templates
     - tripleo-common
     - python-tripleoclient
+
+- hosts: all
+  tags:
+  - devstack
+  tasks:
+  - name: Clone devstack
+    git: repo=https://git.openstack.org/openstack-dev/devstack
+         dest=~/devstack
+         update=no
+
+  - name: Get default configuration
+    get_url: url=https://git.openstack.org/cgit/openstack/ironic-inspector/plain/devstack/example.local.conf
+             dest=~/devstack/local.conf
+             force=no
