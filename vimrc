@@ -12,8 +12,10 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'hynek/vim-python-pep8-indent'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'LycosaExplorer'
-    " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
-    Plugin 'Valloric/YouCompleteMe'
+    if v:version > 704 || (v:version == 704 && has( 'patch1578' ))
+        " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
+        Plugin 'Valloric/YouCompleteMe'
+    endif
     Plugin 'rust-lang/rust.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tpope/vim-unimpaired'
