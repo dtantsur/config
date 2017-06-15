@@ -28,6 +28,7 @@ tags = ["untagged"]
 if args.quickstart:
     path = os.path.expanduser('~/.quickstart/ssh.config.ansible')
     call.extend(["--ssh-common-args", "-F %s" % path])
+    tags.append('quickstart')
 elif args.ssh_config:
     call.extend(["--ssh-common-args", "-F %s" % args.ssh_config])
 

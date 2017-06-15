@@ -79,3 +79,19 @@
   - include: tasks/devstack.yml
     tags:
     - devstack
+
+  - name: Copy templates
+    copy: src=templates/{{ item }} dest=~/{{ item }} mode=0644
+    with_items:
+    - ironic-config.yaml
+    tags:
+    - quickstart
+    - testenv
+
+  - name: Copy scripts
+    copy: src=templates/{{ item }} dest=~/{{ item }} mode=0755
+    with_items:
+    - deploy-ironic.sh
+    tags:
+    - quickstart
+    - testenv

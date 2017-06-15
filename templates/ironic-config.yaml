@@ -1,0 +1,12 @@
+parameter_defaults:
+  ControllerCount: 3
+  NovaSchedulerDefaultFilters:
+    - RetryFilter
+    - AggregateInstanceExtraSpecsFilter
+    - AvailabilityZoneFilter
+    - RamFilter
+    - DiskFilter
+    - ComputeFilter
+    - ComputeCapabilitiesFilter
+    - ImagePropertiesFilter
+  IronicCleaningDiskErase: metadata
