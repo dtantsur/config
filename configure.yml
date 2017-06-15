@@ -23,36 +23,10 @@
     - python-sphinx
     become: true
 
-  - name: Clone tripleo-ci
-    git: repo=https://git.openstack.org/openstack-infra/tripleo-ci
-         dest=~/Projects/tripleo-ci
-         update=no
+  - include: tasks/repos.yml
+    tags:
+    - repos
 
-- hosts: all
-  tags:
-  - repos
-  tasks:
-  - name: Clean up existing delorean repositories
-    command: rm -f /etc/yum.repos.d/delorean*.repo
-    become: true
-
-  - name: Install repositories for the given release
-    shell: STABLE_RELEASE={{ openstack_release }} ~/Projects/tripleo-ci/scripts/tripleo.sh --repo-setup
-
-  - name: Update all packages
-    command: yum update -y
-    become: true
-
-  - name: Install OpenStack clients
-    package: name={{item}} state=latest
-    with_items:
-    - python-openstackclient
-    - python-ironicclient
-    - python-tripleoclient
-    become: true
-
-- hosts: all
-  tasks:
   - name: Install optional OpenStack packages
     package: name={{item}} state=latest
     with_items:
@@ -69,15 +43,8 @@
     become: true
     when: ansible_distribution == 'Fedora'
 
-  - name: Copy vimrc
-    copy: src=vimrc dest=~/.vimrc
-
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
-
-  - name: Install Vundle
-    git: repo=https://github.com/VundleVim/Vundle.vim
-         dest=~/.vim/bundle/Vundle.vim
 
   - name: Create ~/.config/fish
     file: path=~/.config/fish state=directory
@@ -85,43 +52,10 @@
   - name: Copy config.fish
     copy: src=config.fish dest=~/.config/fish/config.fish
 
-  - name: Install vim plugins
-    command: vim +PluginInstall +qall
+  - include: tasks/vim.yml
 
-  - stat: path=~/.vim/bundle/YouCompleteMe
-    register: ycm
+  - include: tasks/testing.yml
 
-  - name: Build YouCompleteMe plugin
-    command: ./install.py chdir=~/.vim/bundle/YouCompleteMe
-    when: ycm.stat.exists == True
-
-  - name: Create ~/Projects
-    file: path=~/Projects state=directory
-
-  - name: Clone a few things I tend to work on
-    git: repo=https://git.openstack.org/openstack/{{item}}
-         dest=~/Projects/{{item}}
-         update=no
-    with_items:
-    - ironic
-    - ironic-inspector
-    - python-ironicclient
-    - python-ironic-inspector-client
-    - ironic-python-agent
-    - tripleo-heat-templates
-    - tripleo-common
-    - python-tripleoclient
-
-- hosts: all
-  tags:
-  - devstack
-  tasks:
-  - name: Clone devstack
-    git: repo=https://git.openstack.org/openstack-dev/devstack
-         dest=~/devstack
-         update=no
-
-  - name: Get default configuration
-    get_url: url=https://git.openstack.org/cgit/openstack/ironic-inspector/plain/devstack/example.local.conf
-             dest=~/devstack/local.conf
-             force=no
+  - include: tasks/devstack.yml
+    tags:
+    - devstack

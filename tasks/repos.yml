@@ -1,0 +1,24 @@
+---
+
+- name: Clone tripleo-ci
+  git: repo=https://git.openstack.org/openstack-infra/tripleo-ci
+       dest=/tmp/tripleo-ci
+
+- name: Clean up existing delorean repositories
+  command: rm -f /etc/yum.repos.d/delorean*.repo
+  become: true
+
+- name: Install repositories for the given release
+  shell: STABLE_RELEASE={{ openstack_release }} /tmp/tripleo-ci/scripts/tripleo.sh --repo-setup
+
+- name: Update all packages
+  command: yum update -y
+  become: true
+
+- name: Install OpenStack clients
+  package: name={{item}} state=latest
+  with_items:
+  - python-openstackclient
+  - python-ironicclient
+  - python-tripleoclient
+  become: true
