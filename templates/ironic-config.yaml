@@ -1,4 +1,5 @@
 parameter_defaults:
+  Debug: true
   ControllerCount: 3
   NovaSchedulerDefaultFilters:
     - RetryFilter
