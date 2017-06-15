@@ -61,7 +61,20 @@
 
   - include: tasks/vim.yml
 
-  - include: tasks/testing.yml
+  - name: Create ~/Projects
+    file: path=~/Projects state=directory
+
+  - name: Check out projects I work on
+    include: tasks/checkout.yml
+    with_items:
+    - ironic
+    - ironic-inspector
+    - python-ironicclient
+    - python-ironic-inspector-client
+    - ironic-python-agent
+    - tripleo-heat-templates
+    - tripleo-common
+    - python-tripleoclient
 
   - include: tasks/devstack.yml
     tags:
