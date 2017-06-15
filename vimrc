@@ -18,6 +18,7 @@ if isdirectory($HOME . "/.vim/bundle")
     endif
     Plugin 'rust-lang/rust.vim'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
