@@ -1,6 +1,8 @@
 parameter_defaults:
   Debug: true
   ControllerCount: 3
+  OvercloudControlFlavor: control
+  OvercloudComputeFlavor: compute
   NovaSchedulerDefaultFilters:
     - RetryFilter
     - AggregateInstanceExtraSpecsFilter
