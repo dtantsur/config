@@ -56,6 +56,7 @@ map <Leader>f :Files<CR>
 map <Leader>b :Buffers<CR>
 map <Leader>a :Ag<CR>
 map <Leader>l :Lines<CR>
+map <Leader>c <Leader>lf
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
