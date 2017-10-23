@@ -41,6 +41,7 @@
     package: name={{item}} state=latest
     with_items:
     - the_silver_searcher
+    - fzf
     - fish
     - python-tox
     - git-review

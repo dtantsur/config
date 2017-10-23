@@ -17,7 +17,8 @@ if isdirectory($HOME . "/.vim/bundle")
         Plugin 'Valloric/YouCompleteMe'
     endif
     Plugin 'rust-lang/rust.vim'
-    Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'junegunn/fzf'
+    Plugin 'junegunn/fzf.vim'
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-unimpaired'
     Plugin 'tpope/vim-surround'
@@ -51,8 +52,10 @@ endif
 nnoremap <silent> <Leader>/ :noh<CR>
 imap <S-Space> <Esc>
 nmap <Space> i<Space>
-map <Leader>b <Leader>lb
-map <Leader>f <Leader>lr
+map <Leader>f :Files<CR>
+map <Leader>b :Buffers<CR>
+map <Leader>a :Ag<CR>
+map <Leader>l :Lines<CR>
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
