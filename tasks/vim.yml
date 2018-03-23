@@ -10,7 +10,8 @@
 - name: Install vim plugins
   command: vim +PluginInstall +qall
 
-- stat: path=~/.vim/bundle/YouCompleteMe
+- name: Find YouCompleteMe directory
+  stat: path=~/.vim/bundle/YouCompleteMe
   register: ycm
 
 - name: Build YouCompleteMe plugin

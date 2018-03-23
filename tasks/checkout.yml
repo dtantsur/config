@@ -1,0 +1,34 @@
+---
+
+- name: Create ~/Projects
+  file: path=~/Projects state=directory
+
+- name: Check out projects I work on
+  git: repo=https://git.openstack.org/openstack/{{ item }}
+       dest=~/Projects/{{ item }}
+       update=no
+  with_items:
+  - ironic
+  - ironic-inspector
+  - python-ironicclient
+  - python-ironic-inspector-client
+  - ironic-python-agent
+  - tripleo-heat-templates
+  - tripleo-common
+  - python-tripleoclient
+
+- name: Create tox environments
+  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e {{ item[1] }} --notest
+  args:
+    chdir: ~/Projects/{{ item[0] }}
+    creates: ~/Projects/{{ item[0] }}/.tox/{{ item[1] }}
+  with_nested:
+  -
+    - ironic
+    - ironic-inspector
+    - python-ironicclient
+    - python-ironic-inspector-client
+    - python-tripleoclient
+  -
+    - py27
+    - venv
