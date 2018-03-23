@@ -1,0 +1,44 @@
+heat_template_version: newton
+
+parameters:
+    image:
+        type: string
+        default: CentOS-7-x86_64-GenericCloud-1708
+    flavor:
+        type: string
+        default: m1.large2
+    keypair:
+        type: string
+        default: default
+    network:
+        type: string
+        default: devstack
+    floating_network:
+        type: string
+        default: 38.145.32.0/22
+
+resources:
+    floating_ip:
+        type: OS::Neutron::FloatingIP
+        properties:
+            floating_network: { get_param: floating_network }
+
+    devstack:
+        type: OS::Nova::Server
+        properties:
+            key_name: { get_param: keypair }
+            image: { get_param: image }
+            flavor: { get_param: flavor }
+            networks:
+                - network: { get_param: network }
+
+    association:
+        type: OS::Neutron::FloatingIPAssociation
+        properties:
+            floatingip_id: { get_resource: floating_ip }
+            port_id: {get_attr: [devstack, addresses, {get_param: network}, 0, port]}
+
+outputs:
+  instance_ip:
+    description: The IP address of the deployed instance
+    value: { get_attr: [devstack, first_address] }
