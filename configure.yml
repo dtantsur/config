@@ -23,7 +23,7 @@
     - python-sphinx
     become: true
 
-  - include: tasks/repos.yml
+  - include_tasks: tasks/repos.yml
     tags:
     - repos
 
@@ -54,19 +54,15 @@
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
 
-  - name: Create ~/.config/fish
-    file: path=~/.config/fish state=directory
-
-  - name: Copy config.fish
-    copy: src=config.fish dest=~/.config/fish/config.fish
-
-  - include: tasks/vim.yml
+  - import_tasks: tasks/tox.yml
 
   - name: Create ~/Projects
     file: path=~/Projects state=directory
 
   - name: Check out projects I work on
-    include: tasks/checkout.yml
+    git: repo=https://git.openstack.org/openstack/{{ item }}
+         dest=~/Projects/{{ item }}
+         update=no
     with_items:
     - ironic
     - ironic-inspector
@@ -77,7 +73,31 @@
     - tripleo-common
     - python-tripleoclient
 
-  - include: tasks/devstack.yml
+  - name: Create tox environments
+    shell: PATH="/usr/bin:$HOME/.local/bin" tox -e {{ item[1] }} --notest
+    args:
+      chdir: ~/Projects/{{ item[0] }}
+      creates: ~/Projects/{{ item[0] }}/.tox/{{ item[1] }}
+    with_nested:
+    -
+      - ironic
+      - ironic-inspector
+      - python-ironicclient
+      - python-ironic-inspector-client
+      - python-tripleoclient
+    -
+      - py27
+      - venv
+
+  - import_tasks: tasks/vim.yml
+
+  - name: Create ~/.config/fish
+    file: path=~/.config/fish state=directory
+
+  - name: Copy config.fish
+    copy: src=config.fish dest=~/.config/fish/config.fish
+
+  - include_tasks: tasks/devstack.yml
     tags:
     - devstack
 
@@ -87,7 +107,6 @@
     - ironic-config.yaml
     tags:
     - quickstart
-    - testenv
 
   - name: Copy scripts
     copy: src=templates/{{ item }} dest=~/{{ item }} mode=0755
@@ -95,4 +114,3 @@
     - deploy-ironic.sh
     tags:
     - quickstart
-    - testenv

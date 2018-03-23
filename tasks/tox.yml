@@ -1,0 +1,29 @@
+---
+
+- name: Check if pip exists
+  command: which pip
+  register: pip_path
+  ignore_errors: true
+
+- name: Download get-pip
+  get_url: url=https://bootstrap.pypa.io/get-pip.py
+           dest=/tmp/get-pip.py
+           mode=0755
+  when: pip_path.rc != 0
+
+- name: Install pip locally
+  command: /tmp/get-pip.py --user pip
+  args:
+    creates: ~/.local/bin/pip
+  when: pip_path.rc != 0
+
+- name: Check if tox exists
+  command: which tox
+  register: tox_path
+  ignore_errors: true
+
+- name: Install tox locally
+  shell: PATH="/usr/bin:$HOME/.local/bin" pip install --user tox
+  args:
+    creates: ~/.local/bin/tox
+  when: tox_path.rc != 0

@@ -12,7 +12,6 @@ parser.add_argument("--ssh-config")
 parser.add_argument("-v", "--verbose", action='store_true')
 parser.add_argument("-r", "--openstack-repo")
 parser.add_argument("--devstack", action='store_true')
-parser.add_argument("--testenv", action='store_true')
 parser.add_argument("--quickstart", action='store_true')
 args = parser.parse_args()
 
@@ -42,8 +41,6 @@ if args.openstack_repo:
         extra_vars.append('openstack_release=')
 if args.devstack:
     tags.append('devstack')
-if args.testenv:
-    tags.append('testenv')
 
 call.extend(['--tags', ','.join(tags),
              '--extra-vars', ' '.join(extra_vars)])
