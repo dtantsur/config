@@ -6,20 +6,21 @@
   when: ansible_distribution == 'Fedora'
 
 - name: Install various packages
-  package: name={{item}} state=latest
-  with_items:
-  - python-devel
-  - git
-  - vim
-  - cmake
-  - gcc-c++
-  - tmux
-  - python-virtualenv
-  - libffi-devel
-  - openssl-devel
-  - libselinux-python
-  - tmux
-  - python-sphinx
+  package: name={{ packages_all }} state=latest
+  vars:
+    packages_all:
+    - python-devel
+    - git
+    - vim
+    - cmake
+    - gcc-c++
+    - tmux
+    - python-virtualenv
+    - libffi-devel
+    - openssl-devel
+    - libselinux-python
+    - tmux
+    - python-sphinx
   become: true
 
 - include_tasks: repos.yml
@@ -27,25 +28,27 @@
   - repos
 
 - name: Install optional OpenStack packages
-  package: name={{item}} state=latest
-  with_items:
-  - python-pbr
-  - python-flake8
-  - python-openstackdocstheme
-  - python-oslo-sphinx
+  package: name={{ packages_os }} state=latest
+  vars:
+    packages_os:
+    - python-pbr
+    - python-flake8
+    - python-openstackdocstheme
+    - python-oslo-sphinx
   become: true
   ignore_errors: yes
 
 - name: Install various Fedora packages
-  package: name={{item}} state=latest
-  with_items:
-  - the_silver_searcher
-  - fzf
-  - fish
-  - python-tox
-  - git-review
-  - python-pip
-  - python3-devel
-  - python3-pip
+  package: name={{ packages_fedora }} state=latest
+  vars:
+    packages_fedora:
+    - the_silver_searcher
+    - fzf
+    - fish
+    - python-tox
+    - git-review
+    - python-pip
+    - python3-devel
+    - python3-pip
   become: true
   when: ansible_distribution == 'Fedora'
