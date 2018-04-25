@@ -8,8 +8,12 @@
     copy: src=gitconfig dest=~/.gitconfig
 
   - import_tasks: tasks/tox.yml
+    tags:
+    - checkout
 
   - import_tasks: tasks/checkout.yml
+    tags:
+    - checkout
 
   - import_tasks: tasks/vim.yml
 

@@ -41,6 +41,8 @@ if args.openstack_repo:
         extra_vars.append('openstack_release=')
 if args.devstack:
     tags.append('devstack')
+else:
+    tags.append('checkout')
 
 call.extend(['--tags', ','.join(tags),
              '--extra-vars', ' '.join(extra_vars)])
