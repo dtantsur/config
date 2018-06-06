@@ -16,6 +16,7 @@
   - tripleo-heat-templates
   - tripleo-common
   - python-tripleoclient
+  - metalsmith
 
 - name: Create tox environments
   shell: PATH="/usr/bin:$HOME/.local/bin" tox -e {{ item[1] }} --notest
@@ -26,6 +27,7 @@
   -
     - ironic
     - ironic-inspector
+    - metalsmith
     - python-ironicclient
     - python-ironic-inspector-client
     - python-tripleoclient
