@@ -34,3 +34,4 @@
   -
     - py27
     - venv
+  when: item[1] != 'venv' or item[0] == 'metalsmith'
