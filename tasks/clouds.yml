@@ -1,0 +1,21 @@
+- name: Get password from stackrc
+  shell: source ~/stackrc && echo $OS_PASSWORD
+  register: os_password
+  failed_when: os_password is failed or not os_password.stdout
+
+- name: Get auth_url from stackrc
+  shell: source ~/stackrc && echo $OS_AUTH_URL
+  register: os_auth_url
+  failed_when: os_auth_url is failed or not os_auth_url.stdout
+
+- name: Ensure ~/.config/openstack exists
+  file:
+    state: directory
+    path: ~/.config/openstack
+
+- name: Generate clouds.yml if not exists
+  template:
+    src: templates/clouds.yaml
+    dest: ~/.config/openstack/clouds.yaml
+    force: false
+    mode: 0600

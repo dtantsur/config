@@ -7,6 +7,10 @@
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
 
+  - import_tasks: tasks/clouds.yml
+    tags:
+    - quickstart
+
   - import_tasks: tasks/tox.yml
     tags:
     - checkout

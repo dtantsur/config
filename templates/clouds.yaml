@@ -1,0 +1,10 @@
+clouds:
+  undercloud:
+    auth:
+      username: admin
+      user_domain_name: Default
+      password: "{{ os_password.stdout }}"
+      project_name: admin
+      project_domain_name: Default
+      auth_url: "{{ os_auth_url.stdout }}"
+    identity_api_version: 3
