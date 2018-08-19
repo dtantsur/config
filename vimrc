@@ -52,10 +52,11 @@ endif
 nnoremap <silent> <Leader>/ :noh<CR>
 imap <S-Space> <Esc>
 nmap <Space> i<Space>
-map <Leader>f :Files<CR>
+map <Leader>f :GFiles<CR>
 map <Leader>b :Buffers<CR>
 map <Leader>a :Ag<CR>
 map <Leader>l :Lines<CR>
+map <Leader>s :BLines<CR>
 map <Leader>c <Leader>lf
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
