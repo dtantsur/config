@@ -20,9 +20,10 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
     Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-unimpaired'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tmhedberg/SimpylFold'
 
     call vundle#end()
 
@@ -48,6 +49,8 @@ set wildmenu
 if has('unnamedplus')
     set clipboard=unnamedplus
 endif
+set foldmethod=indent
+set foldlevel=99
 
 nnoremap <silent> <Leader>/ :noh<CR>
 imap <S-Space> <Esc>
@@ -58,6 +61,10 @@ map <Leader>a :Ag<CR>
 map <Leader>l :Lines<CR>
 map <Leader>s :BLines<CR>
 map <Leader>c <Leader>lf
+map [f :lfirst<CR>
+map [n :lnext<CR>
+map [p :lprev<CR>
+map [l :llast<CR>
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
