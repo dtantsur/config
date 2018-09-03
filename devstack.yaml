@@ -3,10 +3,10 @@ heat_template_version: newton
 parameters:
     image:
         type: string
-        default: CentOS-7-x86_64-GenericCloud-1708
+        default: CentOS-7-x86_64-GenericCloud-1804_02
     flavor:
         type: string
-        default: m1.large2
+        default: m1.large
     keypair:
         type: string
         default: default
