@@ -28,7 +28,7 @@
   - repos
 
 - name: Install optional OpenStack packages
-  package: name={{ packages_os }} state=latest
+  package: name={{ packages_os }} state=present
   vars:
     packages_os:
     - python-pbr
@@ -52,3 +52,21 @@
     - python3-pip
   become: true
   when: ansible_distribution == 'Fedora'
+
+- name: Install EPEL for devstack
+  package:
+    name: epel-release
+    state: present
+  become: true
+  when: ansible_distribution == 'CentOS'
+  tags:
+    - devstack
+
+- name: Install Python 3.6 for devstack
+  package:
+    name: python36-devel
+    state: present
+  become: true
+  when: ansible_distribution == 'CentOS'
+  tags:
+    - devstack
