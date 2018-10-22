@@ -38,7 +38,7 @@ if args.openstack_repo:
     if args.openstack_repo != 'master':
         extra_vars.append('openstack_release=%s' % args.openstack_repo)
     else:
-        extra_vars.append('openstack_release=')
+        extra_vars.append('openstack_release=current-tripleo')
 if args.devstack:
     tags.append('devstack')
 else:
