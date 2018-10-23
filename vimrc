@@ -11,7 +11,6 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'vim-syntastic/syntastic'
     Plugin 'hynek/vim-python-pep8-indent'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'LycosaExplorer'
     if v:version > 704 || (v:version == 704 && has( 'patch1578' ))
         " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
         Plugin 'Valloric/YouCompleteMe'
@@ -20,10 +19,10 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
     Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tmhedberg/SimpylFold'
+    Plugin 'vim-scripts/ReplaceWithRegister'
 
     call vundle#end()
 
