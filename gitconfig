@@ -14,3 +14,5 @@
         la = log --graph --all --decorate --stat
 [push]
 	default = upstream
+[core]
+	excludesfile = ~/.gitignore

@@ -7,6 +7,9 @@
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
 
+  - name: Copy gitignore
+    copy: src=gitignore dest=~/.gitignore
+
   - import_tasks: tasks/clouds.yml
     tags:
     - quickstart
