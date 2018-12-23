@@ -36,11 +36,13 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 filetype indent on
-set textwidth=79
 colorscheme peachpuff
 set hidden
 set number
+set textwidth=79
 set colorcolumn=80
+autocmd BufEnter *.rs setlocal textwidth=100
+autocmd BufEnter *.rs setlocal colorcolumn=101
 set ls=2
 set scrolloff=5
 set incsearch
