@@ -19,19 +19,14 @@
   - metalsmith
 
 - name: Create tox environments
-  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e {{ item[1] }} --notest
+  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e py27 --notest
   args:
-    chdir: ~/Projects/{{ item[0] }}
-    creates: ~/Projects/{{ item[0] }}/.tox/{{ item[1] }}
-  with_nested:
-  -
+    chdir: ~/Projects/{{ item }}
+    creates: ~/Projects/{{ item }}/.tox/py27
+  with_items:
     - ironic
     - ironic-inspector
     - metalsmith
     - python-ironicclient
     - python-ironic-inspector-client
     - python-tripleoclient
-  -
-    - py27
-    - venv
-  when: item[1] != 'venv' or item[0] == 'metalsmith'
