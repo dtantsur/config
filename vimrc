@@ -66,6 +66,8 @@ map [f :lfirst<CR>
 map [n :lnext<CR>
 map [p :lprev<CR>
 map [l :llast<CR>
+map <Leader>di i<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
+map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
@@ -76,7 +78,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=W503,E129"
+let g:syntastic_python_flake8_args = "--ignore=W503,W504,E129"
 let g:syntastic_rst_checkers = []
 let g:syntastic_rust_checkers = ['rustc']
 let g:syntastic_rust_rustc_exe = 'cargo check'
