@@ -6,7 +6,7 @@ parameters:
         default: CentOS-7-x86_64-GenericCloud-1804_02
     flavor:
         type: string
-        default: m1.large
+        default: m1.large2
     keypair:
         type: string
         default: default
