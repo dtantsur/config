@@ -29,7 +29,7 @@ function fish_prompt
 
     set root_dir ~
     set curr_dir (pwd)
-    set prog "import os.path; print os.path.relpath('$curr_dir', '$root_dir') if '$root_dir' in '$curr_dir' else '$curr_dir'"
+    set prog "import os.path; print(os.path.relpath('$curr_dir', '$root_dir') if '$root_dir' in '$curr_dir' else '$curr_dir')"
     echo -n (set_color green)
     echo -n '['
     echo -n (python -c "$prog")
