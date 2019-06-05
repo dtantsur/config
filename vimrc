@@ -21,8 +21,8 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-fugitive'
-    Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/ReplaceWithRegister'
+    Plugin 'machakann/vim-swap'
 
     call vundle#end()
 
