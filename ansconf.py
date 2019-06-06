@@ -13,6 +13,7 @@ parser.add_argument("-v", "--verbose", action='store_true')
 parser.add_argument("-r", "--openstack-repo")
 parser.add_argument("--devstack", action='store_true')
 parser.add_argument("--quickstart", action='store_true')
+parser.add_argument("--checkout", action='store_true')
 args = parser.parse_args()
 
 
@@ -41,7 +42,7 @@ if args.openstack_repo:
         extra_vars.append('openstack_release=current-tripleo')
 if args.devstack:
     tags.append('devstack')
-else:
+if args.checkout or args.quickstart:
     tags.append('checkout')
 
 call.extend(['--tags', ','.join(tags),
