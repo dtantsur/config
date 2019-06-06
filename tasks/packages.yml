@@ -18,51 +18,34 @@
   package: name={{ packages_all }} state=latest
   vars:
     packages_all:
-    - python-devel
     - git
     - vim
     - cmake
     - gcc-c++
     - tmux
-    - python-virtualenv
     - libffi-devel
     - openssl-devel
+    - python-devel
+    - python-virtualenv
     - libselinux-python
-    - tmux
-    - python-sphinx
   become: true
 
 - include_tasks: repos.yml
   tags:
   - repos
 
-- name: Install optional OpenStack packages
-  package: name={{ item }} state=present
-  with_items:
-    - python-pbr
-    - python-flake8
-    - python-openstackdocstheme
-    - python-tox
-  become: true
-  ignore_errors: yes
-
-- name: Install various optional packages
+- name: Install optional packages
   package: name={{ item }} state=latest
   with_items:
     - the_silver_searcher
     - fzf
     - fish
     - git-review
+    - python-tox
     - python-pip
     - python3-devel
+    - python36-devel
     - python3-pip
+    - python36-pip
   become: true
-  ignore_errors: yes
-
-- name: Install Python 3.6 for devstack
-  package:
-    name: python36-devel
-    state: present
-  become: true
-  when: ansible_distribution == 'CentOS'
   ignore_errors: yes
