@@ -16,3 +16,5 @@
 	default = upstream
 [core]
 	excludesfile = ~/.gitignore
+[checkout]
+	defaultRemote = origin
