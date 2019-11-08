@@ -27,7 +27,6 @@
     - openssl-devel
     - python-devel
     - python-virtualenv
-    - libselinux-python
   become: true
 
 - include_tasks: repos.yml
@@ -37,15 +36,18 @@
 - name: Install optional packages
   package: name={{ item }} state=latest
   with_items:
-    - the_silver_searcher
-    - fzf
+    - ansifilter
+    - bat
     - fish
+    - fzf
     - git-review
-    - python-tox
+    - libselinux-python
     - python-pip
+    - python-tox
     - python3-devel
-    - python36-devel
     - python3-pip
+    - python36-devel
     - python36-pip
+    - the_silver_searcher
   become: true
   ignore_errors: yes
