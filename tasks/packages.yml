@@ -20,13 +20,13 @@
     packages_all:
     - git
     - vim
+    - make
     - cmake
     - gcc-c++
     - tmux
     - libffi-devel
     - openssl-devel
-    - python-devel
-    - python-virtualenv
+    - python3-devel
   become: true
 
 - include_tasks: repos.yml
@@ -48,8 +48,8 @@
     - python-flake8
     - python3-devel
     - python3-pip
-    - python36-devel
-    - python36-pip
+    - python3-tox
+    - python3-flake8
     - the_silver_searcher
   become: true
   ignore_errors: yes
