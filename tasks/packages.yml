@@ -22,12 +22,31 @@
     - vim
     - make
     - cmake
-    - gcc-c++
     - tmux
+    - python3
+  become: true
+
+- name: Install packages (RH version)
+  package: name={{ packages_all }} state=latest
+  vars:
+    packages_all:
+    - gcc-c++
     - libffi-devel
     - openssl-devel
     - python3-devel
   become: true
+  when: ansible_os_family == 'RedHat'
+
+- name: Install packages (Ubuntu version)
+  package: name={{ packages_all }} state=latest
+  vars:
+    packages_all:
+    - build-essential
+    - libffi-dev
+    - libssl-dev
+    - python3-dev
+  become: true
+  when: ansible_distribution == 'Ubuntu'
 
 - include_tasks: repos.yml
   tags:
@@ -41,6 +60,7 @@
     - fish
     - fzf
     - git-review
+    - libpq-dev
     - libselinux-python
     - postgresql-devel
     - python-pip
@@ -50,6 +70,7 @@
     - python3-pip
     - python3-tox
     - python3-flake8
+    - python3-selinux
     - the_silver_searcher
   become: true
   ignore_errors: yes
