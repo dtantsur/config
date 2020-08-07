@@ -1,2 +1,3 @@
 configure.retry
 *.swp
+vg-bifrost/.vagrant
