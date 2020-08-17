@@ -18,19 +18,26 @@ if sudo virsh list --all | grep -qw "$NAME"; then
     echo "$NAME is already running"
     sudo virsh destroy "$NAME"
     sudo virsh undefine "$NAME"
-    sudo rm -f "$DEST"
 fi
 
-if ! sudo test -f "$DEST"; then
-    sudo virt-builder centos-8.2 -o "$DEST" \
-        --hostname "$NAME.localdomain" \
-        --size 100G \
-        --format qcow2 \
-        --run-command "useradd -G wheel dtantsur" \
-        --ssh-inject dtantsur:file:"$SSH_KEY" \
-        --write /etc/sudoers:"%wheel ALL=(ALL:ALL) NOPASSWD: ALL" \
-        --update --selinux-relabel
+TMP=$(mktemp -d)
+sudo virsh net-dumpxml default > "$TMP/default.xml"
+if grep -q 192.168.122 "$TMP/default.xml"; then
+    echo Avoid conflict with nested VMs
+    sudo sed -i 's/192.168.122/192.168.42/g' "$TMP/default.xml"
+    sudo virsh net-destroy default
+    sudo virsh net-define --file "$TMP/default.xml"
+    sudo virsh net-start default
 fi
+
+sudo virt-builder centos-8.2 -o "$DEST" \
+    --hostname "$NAME.localdomain" \
+    --size 100G \
+    --format qcow2 \
+    --run-command "useradd -G wheel dtantsur" \
+    --ssh-inject dtantsur:file:"$SSH_KEY" \
+    --write /etc/sudoers:"%wheel ALL=(ALL:ALL) NOPASSWD: ALL" \
+    --update --selinux-relabel
 
 sudo virt-install \
     --name "$NAME" \
