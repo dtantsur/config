@@ -24,6 +24,8 @@
     - cmake
     - tmux
     - python3
+    - libguestfs-tools
+    - virt-install
   become: true
 
 - name: Install packages (RH version)
