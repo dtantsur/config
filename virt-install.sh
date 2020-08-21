@@ -5,6 +5,9 @@ set -eux
 NAME="${1:-centos8}"
 DEST="/var/lib/libvirt/images/$NAME.qcow2"
 SSH_KEY="$HOME/.ssh/id_ed25519.pub"
+MEMORY=${MEMORY:-16}
+CPUS=${CPUS:-4}
+DISK=${DISK:-100}
 
 mkdir -p $(dirname "$DEST")
 
@@ -32,7 +35,7 @@ fi
 
 sudo virt-builder centos-8.2 -o "$DEST" \
     --hostname "$NAME.localdomain" \
-    --size 100G \
+    --size ${DISK}G \
     --format qcow2 \
     --run-command "useradd -G wheel dtantsur" \
     --ssh-inject dtantsur:file:"$SSH_KEY" \
@@ -41,8 +44,8 @@ sudo virt-builder centos-8.2 -o "$DEST" \
 
 sudo virt-install \
     --name "$NAME" \
-    --memory 16384 \
-    --vcpus 4 \
+    --memory $(($MEMORY * 1024)) \
+    --vcpus $CPUS \
     --os-variant centos8 \
     --graphics none \
     --network bridge=virbr0 \
