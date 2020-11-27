@@ -9,7 +9,6 @@ if isdirectory($HOME . "/.vim/bundle")
 
     Plugin 'gmarik/Vundle.vim'
     Plugin 'vim-syntastic/syntastic'
-    Plugin 'hynek/vim-python-pep8-indent'
     Plugin 'terryma/vim-multiple-cursors'
     if v:version > 704 || (v:version == 704 && has( 'patch1578' ))
         " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
@@ -23,6 +22,7 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'tpope/vim-fugitive'
     Plugin 'vim-scripts/ReplaceWithRegister'
     Plugin 'machakann/vim-swap'
+    Plugin 'python-mode/python-mode'
 
     call vundle#end()
 
@@ -35,6 +35,10 @@ set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
+autocmd BufEnter *.yml setlocal softtabstop=2
+autocmd BufEnter *.yml setlocal shiftwidth=2
+autocmd BufEnter *.yaml setlocal softtabstop=2
+autocmd BufEnter *.yaml setlocal shiftwidth=2
 filetype indent on
 colorscheme peachpuff
 set hidden
@@ -72,13 +76,18 @@ map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
 
+let g:pymode = 1
+let g:pymode_indent = 1
+let g:pymode_lint = 0
+let g:pymode_breakpoint_bind = '<Leader>B'
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=W503,W504,E129"
+let g:syntastic_python_flake8_args = "--ignore=W503,E129"
 let g:syntastic_rst_checkers = []
 let g:syntastic_rust_checkers = ['rustc']
 let g:syntastic_rust_rustc_exe = 'cargo check'
