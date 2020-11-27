@@ -12,6 +12,7 @@
         l = log --decorate
         ll = log --graph --all --decorate --oneline
         la = log --graph --all --decorate --stat
+        lbr = branch --sort=-committerdate --verbose
 [push]
 	default = upstream
 [core]
