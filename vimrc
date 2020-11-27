@@ -7,26 +7,23 @@ if isdirectory($HOME . "/.vim/bundle")
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
-    Plugin 'gmarik/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'
     Plugin 'vim-syntastic/syntastic'
     Plugin 'terryma/vim-multiple-cursors'
-    if v:version > 704 || (v:version == 704 && has( 'patch1578' ))
+    if v:version > 800
         " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
-        Plugin 'Valloric/YouCompleteMe'
+        Plugin 'ycm-core/YouCompleteMe'
     endif
     Plugin 'rust-lang/rust.vim'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
-    Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-commentary'
-    Plugin 'tpope/vim-fugitive'
     Plugin 'vim-scripts/ReplaceWithRegister'
+    Plugin 'vim-scripts/camelcasemotion'
     Plugin 'machakann/vim-swap'
     Plugin 'python-mode/python-mode'
 
     call vundle#end()
-
-    let g:ycm_autoclose_preview_window_after_completion = 1
 endif
 
 syntax on
@@ -82,6 +79,8 @@ let g:pymode_lint = 0
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
 set completeopt=menuone,noinsert
+
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
