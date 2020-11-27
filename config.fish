@@ -22,8 +22,13 @@ function fish_prompt
         end
 
         if git show HEAD > /dev/null 2>&1
-            printf ' (%s) ' (git rev-parse --abbrev-ref HEAD)
+            printf ' (%s)' (git rev-parse --abbrev-ref HEAD)
         end
+    end
+
+    if jobs -q
+        echo -n (set_color brblack)
+        printf ' %%%d' (jobs | tail -n +1 | wc -l)
     end
 
     if test $last_st = 0
@@ -31,5 +36,5 @@ function fish_prompt
     else
         echo -n (set_color red)
     end
-    echo '$ '
+    echo ' $ '
 end
