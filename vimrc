@@ -19,7 +19,7 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'junegunn/fzf.vim'
     Plugin 'tpope/vim-commentary'
     Plugin 'vim-scripts/ReplaceWithRegister'
-    Plugin 'vim-scripts/camelcasemotion'
+    Plugin 'chaoren/vim-wordmotion'
     Plugin 'machakann/vim-swap'
     Plugin 'python-mode/python-mode'
 
@@ -95,3 +95,5 @@ let g:syntastic_rust_rustc_exe = 'cargo check'
 let g:syntastic_rust_rustc_fname = ''
 let g:syntastic_rust_rustc_args = '--'
 highlight SyntasticErrorSign guifg=white guibg=red
+
+let g:wordmotion_uppercase_spaces = ['(', ')']
