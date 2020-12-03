@@ -22,6 +22,7 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'chaoren/vim-wordmotion'
     Plugin 'machakann/vim-swap'
     Plugin 'python-mode/python-mode'
+    Plugin 'fatih/vim-go'
 
     call vundle#end()
 endif
@@ -78,7 +79,7 @@ let g:pymode_indent = 1
 let g:pymode_lint = 0
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
-set completeopt=menuone,noinsert
+set completeopt=preview,menuone
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
@@ -97,3 +98,9 @@ let g:syntastic_rust_rustc_args = '--'
 highlight SyntasticErrorSign guifg=white guibg=red
 
 let g:wordmotion_uppercase_spaces = ['(', ')']
+
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
