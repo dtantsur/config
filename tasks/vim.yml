@@ -15,5 +15,5 @@
   register: ycm
 
 - name: Build YouCompleteMe plugin
-  command: ./install.py chdir=~/.vim/bundle/YouCompleteMe
+  command: ./install.py chdir=~/.vim/bundle/YouCompleteMe --go-completer --rust-completer
   when: ycm.stat.exists == True
