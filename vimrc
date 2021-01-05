@@ -9,7 +9,7 @@ if isdirectory($HOME . "/.vim/bundle")
 
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'vim-syntastic/syntastic'
-    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'mg979/vim-visual-multi'
     if v:version > 800
         " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
         Plugin 'ycm-core/YouCompleteMe'
@@ -71,6 +71,12 @@ map [l :llast<CR>
 map <Leader>di i<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 
+let g:VM_maps = {}
+let g:VM_maps["Select Cursor Down"] = '<C-j>'
+let g:VM_maps["Select Cursor Up"]   = '<C-k>'
+let g:VM_maps["Select l"]   = '<C-l>'
+let g:VM_maps["Select h"]   = '<C-h>'
+
 autocmd BufEnter * highlight BadWhitespace ctermbg=red guibg=red
 autocmd BufEnter * match BadWhitespace /\s\+$/
 
@@ -79,7 +85,7 @@ let g:pymode_indent = 1
 let g:pymode_lint = 0
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
-set completeopt=preview,menuone,noselect
+set completeopt=preview,menuone,noselect,noinsert
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
@@ -89,7 +95,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=W503,E129"
+let g:syntastic_python_flake8_args = "--ignore=W503,E129,H238"
 let g:syntastic_rst_checkers = []
 let g:syntastic_rust_checkers = ['rustc']
 let g:syntastic_rust_rustc_exe = 'cargo check'
