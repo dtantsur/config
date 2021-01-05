@@ -86,6 +86,7 @@ let g:pymode_lint = 0
 let g:pymode_breakpoint_bind = '<Leader>B'
 let g:pymode_rope = 1
 set completeopt=preview,menuone,noselect,noinsert
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
