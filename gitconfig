@@ -9,8 +9,8 @@
         st = status --short --branch
         top = log -1 --stat
         topp = log -1 --stat -p
-        l = log --decorate
-        ll = log --graph --all --decorate --oneline
+        l = log --decorate --no-merges
+        ll = log --graph --abbrev-commit --pretty=format:'%Cred%h%C(yellow)%d %Cblue[%an]%C(magenta)%C(reset) %s %Cgreen(%cs)'
         la = log --graph --all --decorate --stat
         lbr = branch --sort=-committerdate --verbose
 [push]
