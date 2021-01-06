@@ -3,30 +3,27 @@
 - name: Create ~/Projects
   file: path=~/Projects state=directory
 
+- set_fact:
+    my_projects:
+      - bifrost
+      - ironic
+      - ironic-inspector
+      - ironic-python-agent
+      - ironic-python-agent-builder
+      - python-ironic-inspector-client
+      - python-ironicclient
+
 - name: Check out projects I work on
-  git: repo=https://git.openstack.org/openstack/{{ item }}
-       dest=~/Projects/{{ item }}
-       update=no
-  with_items:
-  - ironic
-  - ironic-inspector
-  - python-ironicclient
-  - python-ironic-inspector-client
-  - ironic-python-agent
-  - tripleo-heat-templates
-  - tripleo-common
-  - python-tripleoclient
-  - metalsmith
+  git:
+    repo: https://opendev.org/openstack/{{ item }}
+    dest: ~/Projects/{{ item }}
+    update: no
+  loop: "{{ my_projects }}"
 
 - name: Create tox environments
-  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e py27 --notest
+  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e py3 --notest
   args:
     chdir: ~/Projects/{{ item }}
-    creates: ~/Projects/{{ item }}/.tox/py27
-  with_items:
-    - ironic
-    - ironic-inspector
-    - metalsmith
-    - python-ironicclient
-    - python-ironic-inspector-client
-    - python-tripleoclient
+    creates: ~/Projects/{{ item }}/.tox/py3
+  loop: "{{ my_projects }}"
+  when: item != 'ironic-python-agent-builder'

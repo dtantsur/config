@@ -5,26 +5,24 @@
   become: true
   when: ansible_distribution == 'Fedora'
 
-- name: Install EPEL for devstack
+- name: Install EPEL for CentOS
   package:
     name: epel-release
     state: present
   become: true
   when: ansible_distribution == 'CentOS'
-  tags:
-    - devstack
 
 - name: Install various packages
   package: name={{ packages_all }} state=latest
   vars:
     packages_all:
-    - git
-    - vim
-    - make
     - cmake
-    - tmux
-    - python3
+    - git
     - libguestfs-tools
+    - make
+    - python3
+    - tmux
+    - vim
     - virt-install
   become: true
 
@@ -34,8 +32,10 @@
     packages_all:
     - gcc-c++
     - libffi-devel
+    - libpq-devel
     - openssl-devel
     - python3-devel
+    - python3-libselinux
   become: true
   when: ansible_os_family == 'RedHat'
 
@@ -46,6 +46,7 @@
     - build-essential
     - libffi-dev
     - libssl-dev
+    - libpq-dev
     - python3-dev
   become: true
   when: ansible_distribution == 'Ubuntu'
@@ -64,7 +65,7 @@
 
 - include_tasks: repos.yml
   tags:
-  - repos
+    - repos
 
 - name: Install optional packages
   package: name={{ item }} state=latest
@@ -75,16 +76,9 @@
     - fish
     - fzf
     - git-review
-    - libpq-dev
-    - libselinux-python
-    - postgresql-devel
-    - python-pip
-    - python-tox
-    - python-flake8
     - python3-pip
     - python3-tox
     - python3-flake8
-    - python3-selinux
     - the_silver_searcher
   become: true
   ignore_errors: yes
