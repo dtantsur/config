@@ -63,7 +63,6 @@ map <Leader>b :Buffers<CR>
 map <Leader>a :Ag<CR>
 map <Leader>l :Lines<CR>
 map <Leader>s :BLines<CR>
-map <Leader>c <Leader>lf
 map [f :lfirst<CR>
 map [n :lnext<CR>
 map [p :lprev<CR>
@@ -104,7 +103,7 @@ let g:syntastic_rust_rustc_fname = ''
 let g:syntastic_rust_rustc_args = '--'
 highlight SyntasticErrorSign guifg=white guibg=red
 
-let g:wordmotion_uppercase_spaces = ['(', ')']
+let g:wordmotion_uppercase_spaces = ['(', ')', "'", '"', ',', '.', '[', ']', ':']
 
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
