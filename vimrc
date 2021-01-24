@@ -27,6 +27,7 @@ if isdirectory($HOME . "/.vim/bundle")
     call vundle#end()
 endif
 
+colorscheme peachpuff
 syntax on
 filetype indent plugin on
 set tabstop=8
@@ -38,7 +39,6 @@ autocmd BufEnter *.yml setlocal shiftwidth=2
 autocmd BufEnter *.yaml setlocal softtabstop=2
 autocmd BufEnter *.yaml setlocal shiftwidth=2
 filetype indent on
-colorscheme peachpuff
 set hidden
 set number
 set textwidth=79
@@ -88,6 +88,15 @@ set completeopt=preview,menuone,noselect,noinsert
 inoremap <expr> <CR>  pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_language_server =
+\ [
+\   {
+\     'name': 'rust',
+\     'cmdline': ['rust-analyzer'],
+\     'filetypes': ['rust'],
+\     'project_root_files': ['Cargo.toml']
+\   }
+\ ]
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -97,13 +106,14 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=W503,E129,H238"
 let g:syntastic_rst_checkers = []
-let g:syntastic_rust_checkers = ['rustc']
-let g:syntastic_rust_rustc_exe = 'cargo check'
-let g:syntastic_rust_rustc_fname = ''
-let g:syntastic_rust_rustc_args = '--'
-highlight SyntasticErrorSign guifg=white guibg=red
+" let g:syntastic_rust_checkers = ['rustc']
+" let g:syntastic_rust_rustc_exe = 'cargo check'
+" let g:syntastic_rust_rustc_fname = ''
+" let g:syntastic_rust_rustc_args = '--'
+highlight SyntasticWarning term=underline cterm=underline gui=underline
+highlight SyntasticError term=underline cterm=underline gui=underline
 
-let g:wordmotion_uppercase_spaces = ['(', ')', "'", '"', ',', '.', '[', ']', ':']
+let g:wordmotion_uppercase_spaces = ['(', ')', "'", '"', ',', '.', '[', ']', ':', '=']
 
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
