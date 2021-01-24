@@ -10,7 +10,7 @@
         top = log -1 --stat
         topp = log -1 --stat -p
         l = log --decorate --no-merges
-        ll = log --graph --abbrev-commit --pretty=format:'%C(yellow)%h%C(brightgreen bold)%d %C(blue no-bold)[%an]%C(reset) %s %C(magenta)(%cs)'
+        ll = log --graph --all --abbrev-commit --pretty=format:'%C(yellow)%h%C(brightgreen bold)%d %C(blue no-bold)[%an]%C(reset) %s %C(magenta)(%cs)'
         la = log --graph --all --decorate --stat
         lbr = branch --sort=-committerdate --verbose
 [push]
