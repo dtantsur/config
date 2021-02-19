@@ -69,6 +69,11 @@ map [p :lprev<CR>
 map [l :llast<CR>
 map <Leader>di i<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
+map <Leader>g :YcmCompleter GoTo<CR>
+map <Leader>D :YcmCompleter GetDoc<CR>
+map <Leader>T :YcmCompleter GetType<CR>
+map <Leader>F :YcmCompleter FixIt<CR>
+map <Leader>Y :YcmRestartServer<CR>
 
 let g:VM_maps = {}
 let g:VM_maps["Select Cursor Down"] = '<C-j>'
@@ -97,6 +102,7 @@ let g:ycm_language_server =
 \     'project_root_files': ['Cargo.toml']
 \   }
 \ ]
+let g:rustfmt_autosave = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
