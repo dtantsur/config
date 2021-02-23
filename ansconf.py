@@ -14,6 +14,7 @@ parser.add_argument("-r", "--openstack-repo")
 parser.add_argument("--devstack", action='store_true')
 parser.add_argument("--quickstart", action='store_true')
 parser.add_argument("--checkout", action='store_true')
+parser.add_argument("--go", action='store_true')
 args = parser.parse_args()
 
 
@@ -44,6 +45,8 @@ if args.devstack:
     tags.append('devstack')
 if args.checkout or args.quickstart:
     tags.append('checkout')
+if args.go:
+    tags.append('golang')
 
 call.extend(['--tags', ','.join(tags),
              '--extra-vars', ' '.join(extra_vars)])

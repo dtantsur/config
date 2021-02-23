@@ -4,6 +4,11 @@
 
   - import_tasks: tasks/packages.yml
 
+  - name: Create local binary directory
+    file:
+      path: ~/.local/bin
+      state: directory
+
   - name: Copy gitconfig
     copy: src=gitconfig dest=~/.gitconfig
 
@@ -21,6 +26,10 @@
   - import_tasks: tasks/checkout.yml
     tags:
     - checkout
+
+  - import_tasks: tasks/golang.yml
+    tags:
+    - golang
 
   - import_tasks: tasks/vim.yml
 
