@@ -9,6 +9,9 @@ MEMORY=${MEMORY:-16}
 CPUS=${CPUS:-4}
 DISK=${DISK:-100}
 
+OS_VERSION=${2:-centos-8.2}
+OS_VARIANT=${3:-centos8}
+
 mkdir -p $(dirname "$DEST")
 
 if ! test -f "$SSH_KEY"; then
@@ -33,20 +36,20 @@ if grep -q 192.168.122 "$TMP/default.xml"; then
     sudo virsh net-start default
 fi
 
-sudo virt-builder centos-8.2 -o "$DEST" \
+sudo virt-builder $OS_VERSION -o "$DEST" \
     --hostname "$NAME.localdomain" \
     --size ${DISK}G \
     --format qcow2 \
     --run-command "useradd -G wheel dtantsur" \
     --ssh-inject dtantsur:file:"$SSH_KEY" \
     --write /etc/sudoers:"%wheel ALL=(ALL:ALL) NOPASSWD: ALL" \
-    --update --selinux-relabel
+    --selinux-relabel
 
 sudo virt-install \
     --name "$NAME" \
     --memory $(($MEMORY * 1024)) \
     --vcpus $CPUS \
-    --os-variant centos8 \
+    --os-variant $OS_VARIANT \
     --graphics none \
     --network bridge=virbr0 \
     --import \
