@@ -5,8 +5,8 @@ set -eux
 NAME="${1:-centos8}"
 DEST="/var/lib/libvirt/images/$NAME.qcow2"
 SSH_KEY="$HOME/.ssh/id_ed25519.pub"
-MEMORY=${MEMORY:-16}
-CPUS=${CPUS:-4}
+MEMORY=${MEMORY:-24}
+CPUS=${CPUS:-6}
 DISK=${DISK:-100}
 
 OS_VERSION=${2:-centos-8.2}
