@@ -18,6 +18,7 @@
     packages_all:
     - cmake
     - git
+    - golang
     - libguestfs-tools
     - make
     - python3
