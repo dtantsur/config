@@ -56,3 +56,17 @@
     - deploy-ironic.sh
     tags:
     - quickstart
+
+  - name: Copy the gertty script
+    copy:
+      src: templates/gertty-or-firefox
+      dest: /usr/local/bin/gertty-or-firefox
+      mode: "0755"
+    become: true
+
+  - name: Copy the gertty desktop file
+    copy:
+      src: templates/gertty-or-firefox.desktop
+      dest: /usr/share/applications/gertty-or-firefox.desktop
+      mode: "0644"
+    become: true
