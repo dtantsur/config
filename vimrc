@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+syntax off
 let mapleader = "\\"
 
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -23,6 +24,9 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'machakann/vim-swap'
     Plugin 'python-mode/python-mode'
     Plugin 'fatih/vim-go'
+    Plugin 'gcmt/wildfire.vim'
+    Plugin 'mhinz/vim-startify'
+    Plugin 'easymotion/vim-easymotion'
 
     call vundle#end()
 endif
@@ -73,7 +77,11 @@ map <Leader>g :YcmCompleter GoTo<CR>
 map <Leader>D :YcmCompleter GetDoc<CR>
 map <Leader>T :YcmCompleter GetType<CR>
 map <Leader>F :YcmCompleter FixIt<CR>
+map <Leader>R :YcmCompleter RefactorRename
 map <Leader>Y :YcmRestartServer<CR>
+
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 let g:VM_maps = {}
 let g:VM_maps["Select Cursor Down"] = '<C-j>'
