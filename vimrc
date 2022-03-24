@@ -25,8 +25,7 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'python-mode/python-mode'
     Plugin 'fatih/vim-go'
     Plugin 'gcmt/wildfire.vim'
-    Plugin 'mhinz/vim-startify'
-    Plugin 'easymotion/vim-easymotion'
+    Plugin 'tpope/vim-fugitive'
 
     call vundle#end()
 endif
@@ -59,7 +58,7 @@ endif
 set foldmethod=indent
 set foldlevel=99
 
-nnoremap <silent> <Leader>/ :noh<CR>
+nnoremap <silent> <Leader>' :noh<CR>
 imap <S-Space> <Esc>
 nmap <Space> i<Space>
 map <Leader>f :GFiles<CR>
@@ -74,14 +73,13 @@ map [l :llast<CR>
 map <Leader>di i<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 map <Leader>g :YcmCompleter GoTo<CR>
-map <Leader>D :YcmCompleter GetDoc<CR>
-map <Leader>T :YcmCompleter GetType<CR>
+map <Leader>G :YcmCompleter GoToImplementation<CR>
+map <Leader>c :YcmCompleter GoToCallers<CR>
+map <Leader>d :YcmCompleter GetDoc<CR>
+map <Leader>t :YcmCompleter GetType<CR>
 map <Leader>F :YcmCompleter FixIt<CR>
 map <Leader>R :YcmCompleter RefactorRename
 map <Leader>Y :YcmRestartServer<CR>
-
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 let g:VM_maps = {}
 let g:VM_maps["Select Cursor Down"] = '<C-j>'
