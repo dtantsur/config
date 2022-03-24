@@ -61,9 +61,10 @@ set foldlevel=99
 nnoremap <silent> <Leader>' :noh<CR>
 imap <S-Space> <Esc>
 nmap <Space> i<Space>
-map <Leader>f :GFiles<CR>
+map <Leader>f :GFilesNoVendor<CR>
 map <Leader>b :Buffers<CR>
-map <Leader>a :Ag<CR>
+map <Leader>a :AgNoVendor<CR>
+map <Leader>A :Ag<CR>
 map <Leader>l :Lines<CR>
 map <Leader>s :BLines<CR>
 map [f :lfirst<CR>
@@ -132,3 +133,8 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
+
+command! -bang -nargs=? GFilesNoVendor
+            \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'source': 'git ls-files | grep -v "^vendor/"'}), <bang>0)
+command! -bang          AgNoVendor
+            \ call fzf#vim#ag(<q-args>, '--ignore vendor/ --ignore LICENSE --ignore go.sum', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
