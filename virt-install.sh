@@ -9,8 +9,8 @@ MEMORY=${MEMORY:-24}
 CPUS=${CPUS:-6}
 DISK=${DISK:-100}
 
-OS_VERSION=${2:-centos-8.2}
-OS_VARIANT=${3:-centos8}
+OS_VERSION=${2:-centosstream-9}
+OS_VARIANT=${3:-centos-stream9}
 
 mkdir -p $(dirname "$DEST")
 
@@ -22,7 +22,7 @@ fi
 
 if sudo virsh list --all | grep -qw "$NAME"; then
     echo "$NAME is already running"
-    sudo virsh destroy "$NAME"
+    sudo virsh destroy "$NAME" || true
     sudo virsh undefine "$NAME"
 fi
 
