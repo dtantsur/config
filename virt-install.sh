@@ -23,7 +23,7 @@ fi
 if sudo virsh list --all | grep -qw "$NAME"; then
     echo "$NAME is already running"
     sudo virsh destroy "$NAME" || true
-    sudo virsh undefine "$NAME"
+    sudo virsh undefine "$NAME" --nvram
 fi
 
 TMP=$(mktemp -d)
@@ -47,6 +47,7 @@ sudo virt-builder $OS_VERSION -o "$DEST" \
 
 sudo virt-install \
     --name "$NAME" \
+    --boot uefi \
     --memory $(($MEMORY * 1024)) \
     --vcpus $CPUS \
     --os-variant $OS_VARIANT \
