@@ -3,17 +3,18 @@
 - name: Copy vimrc
   copy: src=vimrc dest=~/.vimrc
 
-- name: Install Vundle
-  git: repo=https://github.com/VundleVim/Vundle.vim
-       dest=~/.vim/bundle/Vundle.vim
+- name: Create vim directories
+  file:
+    path: ~/.vim/{{ item }}
+    state: directory
+  loop:
+    - autoload
+    - bundle
+
+- name: Install Plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
 
 - name: Install vim plugins
-  command: vim +PluginInstall +qall
-
-- name: Find YouCompleteMe directory
-  stat: path=~/.vim/bundle/YouCompleteMe
-  register: ycm
-
-- name: Build YouCompleteMe plugin
-  command: ./install.py chdir=~/.vim/bundle/YouCompleteMe --go-completer --rust-completer
-  when: ycm.stat.exists == True
+  command: vim +PlugInstall +qall

@@ -3,39 +3,38 @@ filetype off                  " required
 syntax off
 let mapleader = "\\"
 
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 if isdirectory($HOME . "/.vim/bundle")
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    call plug#begin('~/.vim/bundle')
 
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'vim-syntastic/syntastic'
-    Plugin 'mg979/vim-visual-multi'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'mg979/vim-visual-multi'
     if v:version > 800
-        " sudo yum install -y cmake && cd ~/.vim/bundle/YouCompleteMe && ./install.sh
-        Plugin 'ycm-core/YouCompleteMe'
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --rust-completer' }
     endif
-    Plugin 'rust-lang/rust.vim'
-    Plugin 'junegunn/fzf'
-    Plugin 'junegunn/fzf.vim'
-    Plugin 'tpope/vim-commentary'
-    Plugin 'vim-scripts/ReplaceWithRegister'
-    Plugin 'chaoren/vim-wordmotion'
-    Plugin 'machakann/vim-swap'
-    Plugin 'python-mode/python-mode'
-    Plugin 'fatih/vim-go'
-    Plugin 'gcmt/wildfire.vim'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'tomasiser/vim-code-dark'
+    Plug 'rust-lang/rust.vim'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'tpope/vim-commentary'
+    Plug 'vim-scripts/ReplaceWithRegister'
+    Plug 'chaoren/vim-wordmotion'
+    Plug 'machakann/vim-swap'
+    Plug 'python-mode/python-mode'
+    Plug 'fatih/vim-go'
+    Plug 'gcmt/wildfire.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'vim-airline/vim-airline'
+    Plug 'tomasiser/vim-code-dark'
 
-    call vundle#end()
+    call plug#end()
+
+    if isdirectory($HOME . "/.vim/bundle/vim-code-dark")
+        colorscheme codedark
+        let g:airline_theme = 'codedark'
+    endif
 endif
 
-colorscheme codedark
-let g:airline_theme = 'codedark'
-syntax on
-filetype indent plugin on
 set tabstop=8
 set expandtab
 set softtabstop=4
@@ -147,3 +146,5 @@ command! -bang -nargs=? GFilesNoVendor
             \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'source': 'git ls-files | grep -v "^vendor/"'}), <bang>0)
 command! -bang          AgNoVendor
             \ call fzf#vim#ag(<q-args>, '--ignore vendor/ --ignore LICENSE --ignore go.sum', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+let g:airline#extensions#tabline#enabled = 1
