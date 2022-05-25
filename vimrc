@@ -26,11 +26,14 @@ if isdirectory($HOME . "/.vim/bundle")
     Plugin 'fatih/vim-go'
     Plugin 'gcmt/wildfire.vim'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'tomasiser/vim-code-dark'
 
     call vundle#end()
 endif
 
-colorscheme peachpuff
+colorscheme codedark
+let g:airline_theme = 'codedark'
 syntax on
 filetype indent plugin on
 set tabstop=8
@@ -125,6 +128,12 @@ let g:syntastic_rst_checkers = []
 " let g:syntastic_rust_rustc_args = '--'
 highlight SyntasticWarning term=underline cterm=underline gui=underline
 highlight SyntasticError term=underline cterm=underline gui=underline
+hi Normal       ctermbg=NONE  guibg=NONE
+hi CursorLineNr               guibg=NONE
+hi EndOfBuffer                guibg=NONE
+hi Folded                     guibg=NONE
+hi LineNr       ctermbg=NONE  guibg=NONE
+hi SignColumn   ctermbg=NONE  guibg=NONE
 
 let g:wordmotion_uppercase_spaces = ['(', ')', "'", '"', ',', '.', '[', ']', ':', '=']
 
