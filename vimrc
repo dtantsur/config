@@ -143,7 +143,7 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 
 command! -bang -nargs=? GFilesNoVendor
-            \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'source': 'git ls-files | grep -v "^vendor/"'}), <bang>0)
+            \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'source': 'git ls-files | egrep -v "(^|/)vendor/"'}), <bang>0)
 command! -bang          AgNoVendor
             \ call fzf#vim#ag(<q-args>, '--ignore vendor/ --ignore LICENSE --ignore go.sum', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
