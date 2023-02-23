@@ -43,6 +43,8 @@ sudo virt-builder $OS_VERSION -o "$DEST" \
     --run-command "useradd -G wheel dtantsur" \
     --ssh-inject dtantsur:file:"$SSH_KEY" \
     --write /etc/sudoers:"%wheel ALL=(ALL:ALL) NOPASSWD: ALL" \
+    --update \
+    --install "git,vim,python3,make,gcc" \
     --selinux-relabel
 
 sudo virt-install \
