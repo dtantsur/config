@@ -17,6 +17,7 @@ if isdirectory($HOME . "/.vim/bundle")
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
     Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'chaoren/vim-wordmotion'
     Plug 'machakann/vim-swap'
@@ -142,10 +143,10 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 
-command! -bang -nargs=? GFilesNoVendor
-            \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'source': 'git ls-files | egrep -v "(^|/)vendor/"'}), <bang>0)
-command! -bang          AgNoVendor
-            \ call fzf#vim#ag(<q-args>, '--ignore vendor/ --ignore LICENSE --ignore go.sum', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+command! GFilesNoVendor
+    \ call fzf#run(fzf#wrap({'source': 'git ls-files | egrep -v "(^|/)vendor/"', 'sink': 'e'}))
+command! AgNoVendor
+    \ call fzf#vim#ag(<q-args>, '--ignore vendor/ --ignore LICENSE --ignore go.sum', fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}))
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
