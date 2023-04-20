@@ -107,7 +107,7 @@ let g:ycm_language_server =
 \ [
 \   {
 \     'name': 'rust',
-\     'cmdline': ['rust-analyzer'],
+\     'cmdline': ['rustup run stable rust-analyzer'],
 \     'filetypes': ['rust'],
 \     'project_root_files': ['Cargo.toml']
 \   }
