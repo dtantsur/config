@@ -40,8 +40,8 @@ sudo virt-builder $OS_VERSION -o "$DEST" \
     --hostname "$NAME.localdomain" \
     --size ${DISK}G \
     --format qcow2 \
-    --run-command "useradd -G wheel dtantsur" \
-    --ssh-inject dtantsur:file:"$SSH_KEY" \
+    --run-command "useradd -G wheel $USER" \
+    --ssh-inject $USER:file:"$SSH_KEY" \
     --write /etc/sudoers:"%wheel ALL=(ALL:ALL) NOPASSWD: ALL" \
     --selinux-relabel
 
