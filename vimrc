@@ -79,6 +79,8 @@ map <Leader>da a<C-R>=strftime("%Y-%m-%d %H:%M:%S UTC%z")<CR><Esc>hi:<Esc>ll
 map <Leader>g :YcmCompleter GoTo<CR>
 map <Leader>G :YcmCompleter GoToImplementation<CR>
 map <Leader>c :YcmCompleter GoToCallers<CR>
+map <Leader>r :YcmCompleter GoToReferences<CR>
+map <Leader>T :YcmCompleter GoToType<CR>
 map <Leader>d :YcmCompleter GetDoc<CR>
 map <Leader>t :YcmCompleter GetType<CR>
 map <Leader>F :YcmCompleter FixIt<CR>
@@ -112,6 +114,11 @@ let g:ycm_language_server =
 \     'project_root_files': ['Cargo.toml']
 \   }
 \ ]
+if v:version >= 900
+    let g:ycm_enable_inlay_hints = 1
+endif
+nnoremap <silent> <Leader>H <Plug>(YCMToggleInlayHints)
+
 let g:rustfmt_autosave = 1
 
 let g:syntastic_always_populate_loc_list = 1
