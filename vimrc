@@ -23,7 +23,6 @@ if isdirectory($HOME . "/.vim/bundle")
     Plug 'machakann/vim-swap'
     Plug 'python-mode/python-mode'
     Plug 'fatih/vim-go'
-    Plug 'gcmt/wildfire.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'tomasiser/vim-code-dark'
