@@ -19,3 +19,5 @@
 	excludesfile = ~/.gitignore
 [checkout]
 	defaultRemote = origin
+[merge]
+	conflictStyle = diff3
