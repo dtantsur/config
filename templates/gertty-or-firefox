@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if which gertty &> /dev/null && [[ "$1" =~ "review.opendev.org" ]]; then
-    gertty --open "$1"
-else
-    firefox "$@"
-fi

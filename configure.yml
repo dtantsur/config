@@ -15,14 +15,6 @@
   - name: Copy gitignore
     copy: src=gitignore dest=~/.gitignore
 
-  - import_tasks: tasks/clouds.yml
-    tags:
-    - quickstart
-
-  - import_tasks: tasks/tox.yml
-    tags:
-    - checkout
-
   - import_tasks: tasks/checkout.yml
     tags:
     - checkout
@@ -42,31 +34,3 @@
   - include_tasks: tasks/devstack.yml
     tags:
     - devstack
-
-  - name: Copy templates
-    copy: src=templates/{{ item }} dest=~/{{ item }} mode=0644
-    with_items:
-    - ironic-config.yaml
-    tags:
-    - quickstart
-
-  - name: Copy scripts
-    copy: src=templates/{{ item }} dest=~/{{ item }} mode=0755
-    with_items:
-    - deploy-ironic.sh
-    tags:
-    - quickstart
-
-  - name: Copy the gertty script
-    copy:
-      src: templates/gertty-or-firefox
-      dest: /usr/local/bin/gertty-or-firefox
-      mode: "0755"
-    become: true
-
-  - name: Copy the gertty desktop file
-    copy:
-      src: templates/gertty-or-firefox.desktop
-      dest: /usr/share/applications/gertty-or-firefox.desktop
-      mode: "0644"
-    become: true

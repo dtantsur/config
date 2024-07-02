@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=gertty-or-firefox
-Comment=Gerrty or Firefox
-Terminal=false
-Exec=/usr/local/bin/gertty-or-firefox %u
-Categories=Network;WebBrowser
