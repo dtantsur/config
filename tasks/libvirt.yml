@@ -1,0 +1,16 @@
+---
+
+- name: Start and enable libvirt daemon
+  service:
+    name: libvirtd
+    state: started
+    enabled: true
+  become: yes
+  when: ansible_os_family == 'RedHat'
+
+- name: Enable libvirt for the user {{ ansible_user_id }}
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: libvirt
+    append: yes
+  become: yes

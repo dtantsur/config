@@ -4,6 +4,8 @@
 
   - import_tasks: tasks/packages.yml
 
+  - import_tasks: tasks/libvirt.yml
+
   - name: Create local binary directory
     file:
       path: ~/.local/bin

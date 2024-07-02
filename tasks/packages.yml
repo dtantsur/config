@@ -19,9 +19,10 @@
     - cmake
     - git
     - golang
-    - libguestfs-tools
+    - guestfs-tools
     - make
     - python3
+    - qemu-kvm
     - tmux
     - vim
     - virt-install
@@ -34,6 +35,7 @@
     - gcc-c++
     - libffi-devel
     - libpq-devel
+    - libvirt-daemon
     - openssl-devel
     - python3-devel
     - python3-libselinux
@@ -48,6 +50,7 @@
     - libffi-dev
     - libssl-dev
     - libpq-dev
+    - libvirt-daemon-system
     - python3-dev
   become: true
   when: ansible_distribution == 'Ubuntu'
