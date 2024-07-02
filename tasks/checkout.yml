@@ -1,16 +1,17 @@
 ---
 
 - name: Create ~/Projects
-  file: path=~/Projects state=directory
+  file:
+    path: ~/Projects
+    state: directory
 
 - set_fact:
     my_projects:
       - bifrost
       - ironic
-      - ironic-inspector
       - ironic-python-agent
       - ironic-python-agent-builder
-      - python-ironic-inspector-client
+      - openstacksdk
       - python-ironicclient
 
 - name: Check out projects I work on
@@ -27,3 +28,4 @@
     creates: ~/Projects/{{ item }}/.tox/py3
   loop: "{{ my_projects }}"
   when: item != 'ironic-python-agent-builder'
+  ignore_errors: yes
