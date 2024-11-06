@@ -10,8 +10,10 @@ if isdirectory($HOME . "/.vim/bundle")
 
     Plug 'vim-syntastic/syntastic'
     Plug 'mg979/vim-visual-multi'
-    if v:version > 800
+    if v:version > 900
         Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --rust-completer' }
+    else
+        Plug 'ycm-core/YouCompleteMe', { 'commit': 'd2abd1594f228de79a05257fc5d4fca5c9a7ead3', 'do': './install.py --go-completer --rust-completer' }
     endif
     Plug 'rust-lang/rust.vim'
     Plug 'junegunn/fzf'
