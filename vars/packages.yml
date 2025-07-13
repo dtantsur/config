@@ -1,5 +1,5 @@
 packages_all:
-  - cmake
+  - curl
   - git
   - golang
   - guestfs-tools
@@ -26,6 +26,7 @@ packages_deb:
   - libpq-dev
   - libvirt-daemon-system
   - python3-dev
+  - python3-venv
 
 packages_opt:
   - ansifilter
@@ -36,5 +37,6 @@ packages_opt:
   - git-review
   - python3-pip
   - python3-tox
-  - python3-flake8
+  - python3-wheel
   - the_silver_searcher
+  - weechat
