@@ -1,0 +1,40 @@
+packages_all:
+  - cmake
+  - git
+  - golang
+  - guestfs-tools
+  - make
+  - python3
+  - qemu-kvm
+  - tmux
+  - vim
+  - virt-install
+
+packages_rh:
+  - gcc-c++
+  - libffi-devel
+  - libpq-devel
+  - libvirt-daemon
+  - openssl-devel
+  - python3-devel
+  - python3-libselinux
+
+packages_deb:
+  - build-essential
+  - libffi-dev
+  - libssl-dev
+  - libpq-dev
+  - libvirt-daemon-system
+  - python3-dev
+
+packages_opt:
+  - ansifilter
+  - bat
+  - fd-find
+  - fish
+  - fzf
+  - git-review
+  - python3-pip
+  - python3-tox
+  - python3-flake8
+  - the_silver_searcher

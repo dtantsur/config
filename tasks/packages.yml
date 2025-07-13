@@ -13,47 +13,24 @@
   when: ansible_distribution == 'CentOS'
 
 - name: Install various packages
-  package: name={{ packages_all }} state=latest
-  vars:
-    packages_all:
-    - cmake
-    - git
-    - golang
-    - guestfs-tools
-    - make
-    - python3
-    - qemu-kvm
-    - tmux
-    - vim
-    - virt-install
+  package:
+    name: "{{ packages_all }}"
+    state: latest
   become: true
 
 - name: Install packages (RH version)
-  package: name={{ packages_all }} state=latest
-  vars:
-    packages_all:
-    - gcc-c++
-    - libffi-devel
-    - libpq-devel
-    - libvirt-daemon
-    - openssl-devel
-    - python3-devel
-    - python3-libselinux
+  package:
+    name: "{{ packages_rh }}"
+    state: latest
   become: true
   when: ansible_os_family == 'RedHat'
 
-- name: Install packages (Ubuntu version)
-  package: name={{ packages_all }} state=latest
-  vars:
-    packages_all:
-    - build-essential
-    - libffi-dev
-    - libssl-dev
-    - libpq-dev
-    - libvirt-daemon-system
-    - python3-dev
+- name: Install packages (Debian version)
+  package:
+    name: "{{ packages_deb }}"
+    state: latest
   become: true
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_os_family == 'Debian'
 
 - name: Upgrade everything (RH version)
   command: dnf upgrade -y
@@ -67,22 +44,10 @@
   become: true
   when: ansible_distribution == 'Ubuntu'
 
-- include_tasks: repos.yml
-  tags:
-    - repos
-
 - name: Install optional packages
-  package: name={{ item }} state=latest
-  with_items:
-    - ansifilter
-    - bat
-    - fd-find
-    - fish
-    - fzf
-    - git-review
-    - python3-pip
-    - python3-tox
-    - python3-flake8
-    - the_silver_searcher
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages_opt }}"
   become: true
   ignore_errors: yes
