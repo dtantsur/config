@@ -21,3 +21,5 @@
 	defaultRemote = origin
 [merge]
 	conflictStyle = diff3
+[commit]
+	gpgsign = true
