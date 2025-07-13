@@ -21,6 +21,9 @@ if not os.path.exists(inventory):
 call = ['ansible-playbook', 'configure.yml', '-i', inventory]
 tags = ["untagged"]
 
+if inventory == "localhost,":
+    call.extend(["--connection", "local", "--ask-become-pass"])
+
 if args.verbose:
     call.append('-vvvv')
 if args.devstack:
