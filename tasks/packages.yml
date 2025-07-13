@@ -51,3 +51,6 @@
   with_items: "{{ packages_opt }}"
   become: true
   ignore_errors: yes
+
+- name: Install rustup
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
