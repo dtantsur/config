@@ -21,10 +21,6 @@
     tags:
     - checkout
 
-  - import_tasks: tasks/golang.yml
-    tags:
-    - golang
-
   - import_tasks: tasks/vim.yml
 
   - name: Create ~/.config/fish
