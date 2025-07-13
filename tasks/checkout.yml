@@ -10,9 +10,6 @@
       - bifrost
       - ironic
       - ironic-python-agent
-      - ironic-python-agent-builder
-      - openstacksdk
-      - python-ironicclient
 
 - name: Check out projects I work on
   git:
@@ -22,10 +19,9 @@
   loop: "{{ my_projects }}"
 
 - name: Create tox environments
-  shell: PATH="/usr/bin:$HOME/.local/bin" tox -e py3 --notest
+  command: tox -e py3 --notest
   args:
     chdir: ~/Projects/{{ item }}
     creates: ~/Projects/{{ item }}/.tox/py3
   loop: "{{ my_projects }}"
-  when: item != 'ironic-python-agent-builder'
   ignore_errors: yes
