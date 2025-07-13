@@ -1,6 +1,5 @@
 packages_all:
   - curl
-  - git
   - golang
   - guestfs-tools
   - make
@@ -12,6 +11,7 @@ packages_all:
 
 packages_rh:
   - gcc-c++
+  - git-core
   - libffi-devel
   - libpq-devel
   - libvirt-daemon
@@ -21,6 +21,7 @@ packages_rh:
 
 packages_deb:
   - build-essential
+  - git
   - libffi-dev
   - libssl-dev
   - libpq-dev
