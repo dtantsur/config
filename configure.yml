@@ -32,11 +32,6 @@
   - name: Copy config.fish
     copy: src=config.fish dest=~/.config/fish/config.fish
 
-  - name: Copy profile
-    copy:
-      src: profile
-      dest: ~/.profile
-
   - include_tasks: tasks/devstack.yml
     tags:
     - devstack
