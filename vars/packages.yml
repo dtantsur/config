@@ -1,4 +1,5 @@
 packages_all:
+  - cmake
   - curl
   - golang
   - guestfs-tools
@@ -36,6 +37,8 @@ packages_opt:
   - fish
   - fzf
   - git-review
+  - python3-flake8
+  - python3-hacking
   - python3-pip
   - python3-tox
   - python3-wheel
