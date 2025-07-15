@@ -1,3 +1,6 @@
+set GOPATH "$HOME/.gopath"
+set EDITOR "vim"
+
 function apy
     ag --py $argv
 end
