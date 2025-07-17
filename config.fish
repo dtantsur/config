@@ -1,5 +1,5 @@
-set GOPATH "$HOME/.gopath"
-set EDITOR "vim"
+export GOPATH="$HOME/.gopath"
+export EDITOR="vim"
 
 function apy
     ag --py $argv
